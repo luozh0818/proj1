@@ -303,8 +303,8 @@ $IPTABLES -A OUTPUT -p TCP --dport 80 -o $Client_NET_IFACE -d $WEB_IP_ADDRESS -j
 # example Allowed ping message back to client 
 
 #$IPTABLES -A OUTPUT -p icmp -j ACCEPT
-$IPTABLES -A INPUT -s 10.0.2.4 -p icmp --icmp-type echo-request -j DROP
-$IPTABLES -A OUTPUT -s 10.0.2.4 -p icmp --icmp-type echo-reply -j DROP
+$IPTABLES -A INPUT -s 10.0.2.11 -p icmp --icmp-type echo-request -j DROP
+$IPTABLES -A OUTPUT -s 10.0.2.11 -p icmp --icmp-type echo-reply -j DROP
 #$IPTABLES -A FORWARD -i enp0s3 -o enp0s8 -p icmp 
 
 #####################################################################
@@ -338,4 +338,4 @@ $IPTABLES -A OUTPUT -s 10.0.2.4 -p icmp --icmp-type echo-reply -j DROP
 # Add your own rule below to only allow ping from client to 8.8.8.8 on internet
 
 # Example: Allow client node to access to all Internet using masquerade
-$IPTABLES -t nat -A POSTROUTING -s 10.0.2.4 -d 8.8.8.8 -o $Internet_IFACE -j MASQUERADE
+$IPTABLES -t nat -A POSTROUTING -s 10.0.2.11 -d 8.8.8.8 -o $Internet_IFACE -j MASQUERADE
